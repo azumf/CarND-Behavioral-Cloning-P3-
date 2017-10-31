@@ -129,7 +129,8 @@ To combat the overfitting, I added dropout layers after the convolutional layers
 
 The final step was to run the simulator to see how well the car was driving around track one. 
 
-**There were a single spot where the vehicle had difficulties.**
+**There were a single spot where the vehicle had difficulties. At 0:43s in the video file, the vehicle steered to the left side of the lane. However, the model managed to steer back to the center of the lane before the driveable portion was left.**
+I assume this could be optimized by recording more of these "turn back manoeuvres", especially from the left side of the lane. As well finetuning the correction factor for steering could help out. However, due to the high time demand of the training (~16h on my GPU), I was satisfied with this result and did not re-trained the model due to the mentioned required time.
 
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
@@ -140,15 +141,17 @@ The final model architecture (model.py lines 86-131) consisted of a convolution 
 
 | Layer   |      Type      |  Parameters |
 |----------|:-------------:|------:|
-| 1 | convolutional | f_depth = 24 (5x5) |
-| 2 | convolutional | f_depth = 36 (5x5) |
-| 3 | convolutional | f_depth = 48 (5X5) |
+| 1 | conv. | f_depth = 24 f_size = (5x5) keep_prob = 1.0|
+| 2 | conv. | f_depth = 36 f_size = (5x5) keep_prob = 1.0|
+| 3 | conv. | f_depth = 48 f_size = (5X5) keep_prob = 1.0|
+| 4 | conv. | f_depth = 64 f_size = (3X3) keep_prob = 1.0|
+| 5 | conv. | f_depth = 128 f_size =  (3x3) keep_prob = 0.2|
+| 6 | Flatten | None|
+| 7 | Fully connected | n_neurons = 128 / keep_prob = 0.5|
+| 8 | Fully connected | n_neurons = 64 / keep_prob = 0.5|
+| 9 | Fully connected | n_neurons = 16 / keep_prob = 0.5|
+| 10 | Fully connected | n_neurons = 1 |
 
-
-
-Here is a visualization of the architecture (note: visualizing the architecture is optional according to the project rubric)
-
-![alt text][image1]
 
 #### 3. Creation of the Training Set & Training Process
 
