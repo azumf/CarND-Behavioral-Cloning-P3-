@@ -62,6 +62,7 @@ For training the images from all cameras mounted on the vehicle are used.
 <img src="/writeup_imgs/left.jpg " width="250"/>
 
 **Center camera:**
+
 <img src="/writeup_imgs/center.jpg " width="250"/>
 
 **Right camera:**
@@ -81,30 +82,38 @@ To better generalize, all images yielded by the generator object are flipped. Th
 
 ### Model Architecture and Training Strategy
 
-#### 1. An appropriate model architecture has been employed
+#### 1. Description of model architecture
 
-The lines information refer to the model.py file, not to the jupyter notebook.
+The lines information refer to the model.py file, not to the jupyter notebook. The model.py is just for explanation purposes.
 
-My model consists of a convolution neural network with 5x5 and 3x3 filter sizes and depths between 32 and 128 (model.py lines 80-123) 
+My model consists of a convolution neural network with filter sizes of 5x5 and 3x3 respectively. The filter depths varies between 32 and 128 (model.py lines 86-131) 
 
-The model includes RELU activation function layers to introduce nonlinearity, and the data is normalized in the model using a Keras lambda layer (code line 82). 
+The model includes non linear RELU activation function layers to introduce nonlinearity, and the data is normalized in the model using a Keras lambda layer (code line 89). 
+
+By applying the Cropping2D layer, the image is cropped by 20 pixels from bottom and by 65 pixels from top. These should help to focus the feature extraction by the convolutional layers on the lane itself and not on any surroundings.
 
 #### 2. Attempts to reduce overfitting in the model
 
 The model contains dropout layers in order to reduce overfitting.
 
-The model was trained and validated on different data sets to ensure that the model was not overfitting (code line 10-16). The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track.
+The model was trained and validated on different data sets to ensure that the model was not overfitting.
+
+First, I trained the model with sample sizes of ~40000 images per epoch and for only 3 epochs. The training loss was significantly reduced during the first epoch. The following epochs did reduce the trainig loss only in a minor fashion. However, the validation loss was lowered as well.
+
+For better understanding and to keep track of the model performance I chose to re-train the model with a smaller sample size per epoch (~3700 samples). I will get more in detail later on.
+
+The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track. 
+
 
 #### 3. Model parameter tuning
 
-The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 25).
+The model used an adam optimizer, so the learning rate was not tuned manually (model.py line 134).
 
 #### 4. Appropriate training data
 
 Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving and recovering from the left and right sides of the road. The recovering data was generated with the simulator tool. 
-I thought about using augmented data by using the flip function of the opencv toolbox. Due to run time issues (training would take 24h or more) I kept the idea on hold and trained the network on my GPU with the training data described above. 
+I as well flipped the images during processing by the generator object to multiply the available training data.
 
-For details about how I created the training data, see the next section. 
 
 ### Model Architecture and Training Strategy
 
@@ -114,16 +123,14 @@ The overall strategy for deriving a model architecture was to analyse the existi
 
 Coming from my knowledge I acquired during the deep learning Nanodegree it was obvious that one or two convolutional layers won't do the job. I started with 3 convolutional layers with filter sizes from 24 to 48 but went deeper with 2 additional conv. layers to gain a more detailed feature extraction.
 
-In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
-
-
+In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. 
 
 To combat the overfitting, I added dropout layers after the convolutional layers and after the fully connected layers. After the conv. layers I used a keep_prob of 0.2, after the FC layers I used 0.5 as dropout parameter.
 
+The final step was to run the simulator to see how well the car was driving around track one. 
 
-Then I ... 
+**There were a single spot where the vehicle had difficulties.**
 
-The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track... to improve the driving behavior in these cases, I ....
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
