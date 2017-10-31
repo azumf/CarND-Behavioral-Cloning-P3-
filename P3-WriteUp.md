@@ -51,15 +51,28 @@ python drive.py model.h5
 
 The model.py file contains the code for training and saving the convolution neural network. The file shows the pipeline I used for training and validating the model, and it contains comments to explain how the code works.
 
-### Image visualization
+### Visualization of the training images
 
 #### 1. Using the images of all three cameras
-##### left
+
+For training the images from all cameras mounted on the vehicle are used.
+*left*
 <img src="/writeup_imgs/left.jpg " width="250"/>
-##### center
+*center*
 <img src="/writeup_imgs/center.jpg " width="250"/>
-##### right
+*right*
 <img src="/writeup_imgs/right.jpg " width="250"/>
+
+#### 2. Flipped images
+
+To better generalize, all images yielded by the generator object are flipped. That helps the model to generalize and as well adds augmented data to the training data pool.
+
+*recorded image and flipped image*
+
+<img src="/writeup_imgs/flip1.jpg " width="250"/> 
+<img src="/writeup_imgs/flip2.jpg " width="250"/>
+
+
 
 ### Model Architecture and Training Strategy
 
