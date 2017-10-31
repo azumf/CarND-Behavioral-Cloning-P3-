@@ -57,23 +57,22 @@ The model.py file contains the code for training and saving the convolution neur
 
 For training the images from all cameras mounted on the vehicle are used.
 
-Left camera: 
-![alt text](="/writeup_imgs/left.jpg "Left camera")
-
+**Left camera:**
 
 <img src="/writeup_imgs/left.jpg " width="250"/>
 
-*center*
+**Center camera:**
 <img src="/writeup_imgs/center.jpg " width="250"/>
 
-*right*
+**Right camera:**
+
 <img src="/writeup_imgs/right.jpg " width="250"/>
 
 #### 2. Flipped images
 
 To better generalize, all images yielded by the generator object are flipped. That helps the model to generalize and as well adds augmented data to the training data pool.
 
-*recorded image and flipped image*
+**recorded image and flipped image**
 
 <img src="/writeup_imgs/flip1.jpg " width="250"/> 
 <img src="/writeup_imgs/flip2.jpg " width="250"/>
