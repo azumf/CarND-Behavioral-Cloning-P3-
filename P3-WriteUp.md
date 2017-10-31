@@ -155,28 +155,19 @@ The final model architecture (model.py lines 86-131) consisted of a convolution 
 
 #### 3. Creation of the Training Set & Training Process
 
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
+To capture good driving behavior, I flipped the already recorded lane driving with the cv2.flip function, see above. It was of course necessary to flip the values of the steering angle as well.
 
-![alt text][image2]
+I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to steer back in case of reaching the lane sides. I assume that the situation with low performance in the video is as well related to the recovery situations that I have recorded. Sometimes I did not capture the best lane back to the center.
 
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
+After the collection process, I had 27.927 number of unique data points or images. By applying the cv2.flip function the dataset is doubled. With consideration of the augmented pictures as well I got a total number of 55.854 images. 
 
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
+I then preprocessed this data by usage of a generator object. With this generator the data is processed on the fly. The generator yields images and corresponding angles with a batch_size of 32.
 
-Then I repeated this process on track two in order to get more data points.
+For the correction value for the steering angle (for angle values that correspond to images from the left or the right camera) I chose **0.2**. First I tried a correction value of **0.1** but it was shown that the vehicle left the lane in a curve with a high curvature.
 
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
+20% of the training data was considered as validation data.
 
-![alt text][image6]
-![alt text][image7]
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. I used an adam optimizer so that manually training the learning rate wasn't necessary. A number of 15 epochs showed a proper loss reduction.
 
-Etc ....
+<img src="/writeup_imgs/loss_valloss.png " width="250"/>
 
-After the collection process, I had X number of data points. I then preprocessed this data by ...
-
-
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
-
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
