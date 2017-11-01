@@ -145,7 +145,7 @@ The final model architecture (model.py lines 86-131) consisted of a convolution 
 
 **Visualization of my CNN architecture:**
 
-<img src="/writeup_imgs/flow.png " width="250"/>
+<img src="/writeup_imgs/flow.png " width="700"/>
 
 
 
