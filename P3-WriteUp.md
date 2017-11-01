@@ -143,6 +143,11 @@ The final model architecture (model.py lines 86-131) consisted of a convolution 
 | 9 | Fully connected | n_neurons = 16 / keep_prob = 0.5|
 | 10 | Fully connected | n_neurons = 1 |
 
+**Visualization of my CNN architecture:**
+
+<img src="/writeup_imgs/flow.png " width="250"/>
+
+
 
 #### 3. Creation of the Training Set & Training Process
 
