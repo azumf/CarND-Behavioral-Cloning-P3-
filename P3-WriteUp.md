@@ -132,20 +132,22 @@ The final model architecture (model.py lines 86-131) consisted of a convolution 
 
 | Layer   |      Type      |  Parameters |
 |----------|:-------------:|------:|
-| 1 | conv. | f_depth = 24 f_size = (5x5) drop_prob = 1.0|
-| 2 | conv. | f_depth = 36 f_size = (5x5) drop_prob = 1.0|
-| 3 | conv. | f_depth = 48 f_size = (5X5) drop_prob = 1.0|
-| 4 | conv. | f_depth = 64 f_size = (3X3) drop_prob = 1.0|
-| 5 | conv. | f_depth = 128 f_size =  (3x3) drop_prob = 0.2|
-| 6 | Flatten | None|
-| 7 | Fully connected | n_neurons = 128 / drop_prob = 0.5|
-| 8 | Fully connected | n_neurons = 64 / drop_prob = 0.5|
-| 9 | Fully connected | n_neurons = 16 / drop_prob = 0.5|
-| 10 | Fully connected | n_neurons = 1 |
+| 1 | conv. | f_depth = 16 f_size = (5x5) |
+| 2 | max pool. | strides = (2x2) |
+| 3 | conv. | f_depth = 32 f_size = (5x5) |
+| 4 | max pool. | strides = (2x2) |
+| 5 | dropout | drop_prob = 0.2|
+| 6 | conv | f_depth = 64 f_size = (3x3) |
+| 7 | dropout | drop_prob = 0.5|
+| 8 | Flatten | - |
+| 9 | Fully connected | n_neurons = 64 |
+| 10 | dropout | drop_prob = 0.5|
+| 11 | Fully connected | n_neurons = 32 |
+| 12 | dropout | drop_prob = 0.5|
+| 13 | Fully connected | n_neurons = 16 |
+| 14 | dropout | drop_prob = 0.5|
+| 15 | Fully connected | n_neurons = 1 |
 
-**Visualization of my CNN architecture:**
-
-<img src="/writeup_imgs/flow.png " width="700"/>
 
 
 
