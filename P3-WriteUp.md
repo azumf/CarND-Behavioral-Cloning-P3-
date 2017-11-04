@@ -157,15 +157,13 @@ To capture good driving behavior, I flipped the already recorded lane driving wi
 
 I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to steer back in case of reaching the lane sides. I assume that the situation with low performance in the video is as well related to the recovery situations that I have recorded. Sometimes I did not capture the best lane back to the center.
 
-After the collection process, I had 27.927 number of unique data points or images. By applying the cv2.flip function the dataset is doubled. With consideration of the augmented pictures as well I got a total number of 55.854 images. 
-
-I then preprocessed this data by usage of a generator object. With this generator the data is processed on the fly. The generator yields images and corresponding angles with a batch_size of 32.
+I then preprocessed this data by usage of a generator object. With this generator the data is processed on the fly. The generator yields images and corresponding angles with a batch_size of 16.
 
 For the correction value for the steering angle (for angle values that correspond to images from the left or the right camera) I chose **0.2**. First I tried a correction value of **0.1** but it was shown that the vehicle left the lane in a curve with a high curvature.
 
 20% of the training data was considered as validation data.
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. I used an adam optimizer so that manually training the learning rate wasn't necessary. A number of 15 epochs showed a proper loss reduction.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. I used an adam optimizer so that manually training the learning rate wasn't necessary. A number of 12 epochs showed a proper loss reduction.
 
-<img src="/writeup_imgs/loss_valloss.png " width="250"/>
+
 
