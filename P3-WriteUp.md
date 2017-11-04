@@ -116,7 +116,7 @@ Coming from my knowledge I acquired during the deep learning Nanodegree it was o
 
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. 
 
-To combat the overfitting, I added dropout layers after the convolutional layers and after the fully connected layers. After the conv. layers I used a keep_prob of 0.2, after the FC layers I used 0.5 as dropout parameter.
+To combat the overfitting, I added dropout layers after the convolutional layers and after the fully connected layers. After the conv. layers I used a drop_prob of 0.2, after the FC layers I used 0.5 as dropout parameter.
 
 The final step was to run the simulator to see how well the car was driving around track one. 
 
@@ -132,15 +132,15 @@ The final model architecture (model.py lines 86-131) consisted of a convolution 
 
 | Layer   |      Type      |  Parameters |
 |----------|:-------------:|------:|
-| 1 | conv. | f_depth = 24 f_size = (5x5) keep_prob = 1.0|
-| 2 | conv. | f_depth = 36 f_size = (5x5) keep_prob = 1.0|
-| 3 | conv. | f_depth = 48 f_size = (5X5) keep_prob = 1.0|
-| 4 | conv. | f_depth = 64 f_size = (3X3) keep_prob = 1.0|
-| 5 | conv. | f_depth = 128 f_size =  (3x3) keep_prob = 0.2|
+| 1 | conv. | f_depth = 24 f_size = (5x5) drop_prob = 1.0|
+| 2 | conv. | f_depth = 36 f_size = (5x5) drop_prob = 1.0|
+| 3 | conv. | f_depth = 48 f_size = (5X5) drop_prob = 1.0|
+| 4 | conv. | f_depth = 64 f_size = (3X3) drop_prob = 1.0|
+| 5 | conv. | f_depth = 128 f_size =  (3x3) drop_prob = 0.2|
 | 6 | Flatten | None|
-| 7 | Fully connected | n_neurons = 128 / keep_prob = 0.5|
-| 8 | Fully connected | n_neurons = 64 / keep_prob = 0.5|
-| 9 | Fully connected | n_neurons = 16 / keep_prob = 0.5|
+| 7 | Fully connected | n_neurons = 128 / drop_prob = 0.5|
+| 8 | Fully connected | n_neurons = 64 / drop_prob = 0.5|
+| 9 | Fully connected | n_neurons = 16 / drop_prob = 0.5|
 | 10 | Fully connected | n_neurons = 1 |
 
 **Visualization of my CNN architecture:**
